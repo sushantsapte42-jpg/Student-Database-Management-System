@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JSPM | Student Database Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <div>
+                <h2>JSPM</h2>
+                <p>Student Portal</p>
+            </div>
+
+        </div>
+
+        <div class="college">
+            <span>INSTITUTE</span>
+            <p>
+                Bhivarabai Sawant Institute
+                of Technology & Research
+            </p>
+        </div>
+
+
+        <div class="menu-title">MAIN MENU</div>
+
+        <nav>
+
+            <button class="nav-item active"
+                    onclick="showPage('dashboard', this)">
+                <i class="fa-solid fa-grid-2"></i>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="showPage('students', this)">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Students</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="showPage('addStudent', this)">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Add Student</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="showPage('search', this)">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="showPage('hashing', this)">
+                <i class="fa-solid fa-hashtag"></i>
+                <span>Hash Table</span>
+            </button>
+
+        </nav>
+
+
+        <div class="ds-card">
+
+            <div class="ds-icon">
+                <i class="fa-solid fa-code"></i>
+            </div>
+
+            <div>
+                <span>DATA STRUCTURE</span>
+                <strong>Hashing</strong>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+            <span>Mini Project</span>
+            <strong>Computer Engineering</strong>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="page-heading">
+
+                <span class="eyebrow">JSPM • COMPUTER ENGINEERING</span>
+
+                <h1 id="pageTitle">Dashboard</h1>
+
+            </div>
+
+
+            <div class="admin">
+
+                <div class="status-dot"></div>
+
+                <div class="admin-avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong>Administrator</strong>
+                    <span>Student Portal</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section id="dashboard" class="page active-page">
+
+            <div class="hero">
+
+                <div>
+
+                    <span class="hero-label">
+                        STUDENT DATABASE MANAGEMENT
+                    </span>
+
+                    <h2>
+                        Manage student records<br>
+                        <em>with intelligent hashing.</em>
+                    </h2>
+
+                    <p>
+                        A Data Structures based student management
+                        system using Hash Table and Linear Probing.
+                    </p>
+
+                    <button class="gold-btn"
+                            onclick="showPage('addStudent')">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add New Student
+
+                    </button>
+
+                </div>
+
+
+                <div class="hero-symbol">
+
+                    <div class="hash-circle">
+                        <span>H</span>
+                    </div>
+
+                    <small>
+                        HASH<br>
+                        STRUCTURE
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+                <div class="stat">
+
+                    <div class="stat-top">
+                        <span>Total Students</span>
+
+                        <div class="stat-icon blue">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="totalStudents">0</h2>
+
+                    <small>
+                        Registered records
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+                        <span>Records Stored</span>
+
+                        <div class="stat-icon green">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="recordsStored">0</h2>
+
+                    <small>
+                        Active records
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+                        <span>Table Capacity</span>
+
+                        <div class="stat-icon purple">
+                            <i class="fa-solid fa-table-cells"></i>
+                        </div>
+                    </div>
+
+                    <h2>10</h2>
+
+                    <small>
+                        Hash table slots
+                    </small>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <div class="stat-top">
+                        <span>Collisions</span>
+
+                        <div class="stat-icon orange">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+
+                    <h2 id="collisionCount">0</h2>
+
+                    <small>
+                        Resolved by probing
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOWER GRID -->
+
+            <div class="dashboard-grid">
+
+
+                <!-- RECENT STUDENTS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-label">
+                                DATABASE
+                            </span>
+
+                            <h3>Recent Students</h3>
+                        </div>
+
+                        <button onclick="showPage('students')">
+                            View all
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div id="recentStudents"
+                         class="recent-list">
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-label">
+                                SHORTCUTS
+                            </span>
+
+                            <h3>Quick Actions</h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-grid">
+
+                        <button onclick="showPage('addStudent')">
+
+                            <i class="fa-solid fa-user-plus"></i>
+
+                            <div>
+                                <strong>Add Student</strong>
+                                <span>Create new record</span>
+                            </div>
+
+                        </button>
+
+
+                        <button onclick="showPage('search')">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <div>
+                                <strong>Search Student</strong>
+                                <span>Find by roll number</span>
+                            </div>
+
+                        </button>
+
+
+                        <button onclick="showPage('hashing')">
+
+                            <i class="fa-solid fa-hashtag"></i>
+
+                            <div>
+                                <strong>Hash Table</strong>
+                                <span>View data structure</span>
+                            </div>
+
+                        </button>
+
+
+                        <button onclick="showPage('students')">
+
+                            <i class="fa-solid fa-list"></i>
+
+                            <div>
+                                <strong>Student List</strong>
+                                <span>View all records</span>
+                            </div>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HASHING EXPLANATION -->
+
+            <div class="concept-panel">
+
+                <div class="concept-left">
+
+                    <span class="panel-label">
+                        DATA STRUCTURE CONCEPT
+                    </span>
+
+                    <h3>How our Hashing works</h3>
+
+                    <p>
+                        The student's Roll Number acts as the key.
+                        The hash function converts this key into
+                        a position in the hash table.
+                    </p>
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <span>HASH FUNCTION</span>
+
+                    <strong>
+                        h(key) = key % 10
+                    </strong>
+
+                </div>
+
+
+                <div class="formula-card">
+
+                    <span>COLLISION METHOD</span>
+
+                    <strong>
+                        Linear Probing
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STUDENTS ================= -->
+
+        <section id="students" class="page">
+
+            <div class="section-head">
+
+                <div>
+                    <span class="eyebrow">DATABASE</span>
+                    <h2>Student Directory</h2>
+                    <p>All registered student records.</p>
+                </div>
+
+                <button class="gold-btn"
+                        onclick="showPage('addStudent')">
+
+                    <i class="fa-solid fa-plus"></i>
+                    Add Student
+
+                </button>
+
+            </div>
+
+
+            <div class="search-bar">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input id="studentFilter"
+                       type="text"
+                       placeholder="Search name, roll number or department..."
+                       oninput="displayStudents()">
+
+            </div>
+
+
+            <div class="table-panel">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+                        <th>ROLL NO.</th>
+                        <th>STUDENT</th>
+                        <th>DEPARTMENT</th>
+                        <th>DIV.</th>
+                        <th>MARKS</th>
+                        <th>ACTION</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="studentTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ADD STUDENT ================= -->
+
+        <section id="addStudent" class="page">
+
+            <div class="section-head">
+
+                <div>
+                    <span class="eyebrow">DATABASE ENTRY</span>
+
+                    <h2>Add New Student</h2>
+
+                    <p>
+                        Create a new student record.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-panel">
+
+                <div class="form-intro">
+
+                    <div class="form-icon">
+                        <i class="fa-solid fa-user-plus"></i>
+                    </div>
+
+                    <div>
+                        <h3>Student Information</h3>
+
+                        <p>
+                            Enter accurate information.
+                            Roll number will be used as the
+                            hashing key.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="studentForm">
+
+                    <div class="form-grid">
+
+                        <div class="field">
+
+                            <label>ROLL NUMBER</label>
+
+                            <input id="rollNo"
+                                   type="number"
+                                   placeholder="e.g. 25"
+                                   required>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>STUDENT NAME</label>
+
+                            <input id="studentName"
+                                   type="text"
+                                   placeholder="Enter full name"
+                                   required>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>DEPARTMENT</label>
+
+                            <select id="department" required>
+
+                                <option value="">
+                                    Select department
+                                </option>
+
+                                <option>
+                                    Computer Engineering
+                                </option>
+
+                                <option>
+                                    Information Technology
+                                </option>
+
+                                <option>
+                                    AI & DS
+                                </option>
+
+                                <option>
+                                    ENTC
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>DIVISION</label>
+
+                            <select id="division" required>
+
+                                <option value="">
+                                    Select division
+                                </option>
+
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>SEMESTER</label>
+
+                            <select id="semester" required>
+
+                                <option value="">
+                                    Select semester
+                                </option>
+
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>MARKS</label>
+
+                            <input id="marks"
+                                   type="number"
+                                   min="0"
+                                   max="100"
+                                   placeholder="e.g. 85"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <button class="gold-btn submit-btn"
+                            type="submit">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Student Record
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <section id="search" class="page">
+
+            <div class="section-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        HASH SEARCH
+                    </span>
+
+                    <h2>Find Student</h2>
+
+                    <p>
+                        Search using Roll Number as the hash key.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="search-panel">
+
+                <div class="search-main">
+
+                    <div class="big-search-icon">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+                    <div>
+
+                        <label>ROLL NUMBER</label>
+
+                        <input id="searchRoll"
+                               type="number"
+                               placeholder="Enter roll number">
+
+                    </div>
+
+                    <button class="gold-btn"
+                            onclick="searchStudent()">
+
+                        Search
+
+                    </button>
+
+                </div>
+
+
+                <div id="searchResult"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HASH TABLE ================= -->
+
+        <section id="hashing" class="page">
+
+            <div class="section-head">
+
+                <div>
+
+                    <span class="eyebrow">
+                        DATA STRUCTURE
+                    </span>
+
+                    <h2>Hash Table</h2>
+
+                    <p>
+                        Live visualization of our Hash Table.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="hash-process">
+
+                <div class="process-card">
+
+                    <span>KEY</span>
+
+                    <strong>Roll Number</strong>
+
+                    <small>
+                        Student identifier
+                    </small>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-card highlight">
+
+                    <span>HASH FUNCTION</span>
+
+                    <strong>key % 10</strong>
+
+                    <small>
+                        Calculate index
+                    </small>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-card">
+
+                    <span>INDEX</span>
+
+                    <strong>0 — 9</strong>
+
+                    <small>
+                        Hash table position
+                    </small>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-card">
+
+                    <span>COLLISION</span>
+
+                    <strong>Linear Probing</strong>
+
+                    <small>
+                        Find next position
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="hash-example">
+
+                <div>
+
+                    <span>EXAMPLE CALCULATION</span>
+
+                    <h3>
+                        Roll Number = 25
+                    </h3>
+
+                </div>
+
+                <div class="calculation">
+
+                    <strong>
+                        h(25) = 25 % 10 = 5
+                    </strong>
+
+                    <span>
+                        → Student is placed at index 5
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-panel">
+
+                <div class="table-title">
+
+                    <div>
+                        <span class="panel-label">
+                            LIVE STRUCTURE
+                        </span>
+
+                        <h3>Hash Table Slots</h3>
+                    </div>
+
+                    <span class="capacity">
+                        Capacity: 10
+                    </span>
+
+                </div>
+
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+                        <th>INDEX</th>
+                        <th>ROLL NO.</th>
+                        <th>STUDENT</th>
+                        <th>DEPARTMENT</th>
+                        <th>MARKS</th>
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="hashTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
